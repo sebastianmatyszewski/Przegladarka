@@ -1,65 +1,10 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <button onclick="tableCreate()">Wygeneruj</button>
-<script>
-    function generateRandomNumbers(){
-        var parzyste = [];
-        var nieparzyste = [];
-        for(var i = 0; i <20; i++){
-            var liczba = Math.floor(Math.random()*100)+1;
-            if(parzyste.includes(liczba) || nieparzyste.includes(liczba)){
-                i--;
-            }else{
-               if(liczba % 2 ==0){
-                parzyste.push(liczba);
-                }else{
-                    nieparzyste.push(liczba);
-                } 
-            }    
-        }
-        parzyste.sort((a,b) => a - b);
-        nieparzyste.sort((a,b) => a - b);
-        return{parzyste, nieparzyste};
-    }
-    
-    function tableCreate() {
-        var elem = document. getElementById("table"); 
-        if(elem){
-            elem. remove();   
-        }
-        var numbers = generateRandomNumbers();
-        var parzyste = numbers.parzyste;
-        var nieparzyste = numbers.nieparzyste;
-        const body = document.body,
-        table = document.createElement('table');
-        table.style.width = '200px';
-        table.id = "table";
-        for (let i = 0; i < Math.max(parzyste.length, nieparzyste.length); i++) {
-            const tr = table.insertRow();
-            for (let j = 0; j < 2; j++) {
-                if(j==0){
-                    if(i<parzyste.length){
-                        const td = tr.insertCell();
-                        td.appendChild(document.createTextNode(parzyste[i]));
-                    }else{
-                        const td = tr.insertCell();
-                        td.appendChild(document.createTextNode(" "));
-                    }
-                }
-                if(j==1){
-                    if(i<nieparzyste.length){
-                        const td = tr.insertCell();
-                        td.appendChild(document.createTextNode(nieparzyste[i]));
-                    }else{
-                        const td = tr.insertCell();
-                        td.appendChild(document.createTextNode(" "));
-                    }
-                }
-            }
-        }
-        body.appendChild(table);
-    }
-</script>
-</body>
+    <head>
+        <script type="text/javascript" src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <button onclick="tableCreate()">Wygeneruj</button>
+    </body>
 </html>
